@@ -1,0 +1,12 @@
+.header__nav{
+  font-family: "Inter", 'Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+
+  text-decoration: none;
+  display: flex;
+  align-items: baseline
+}
+
+

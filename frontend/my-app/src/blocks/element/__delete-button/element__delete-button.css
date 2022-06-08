@@ -1,0 +1,18 @@
+.element__delete-button {
+  position: absolute;
+  width: 18px;
+  height: 19px;
+  background-color: transparent;
+  border: none;
+  background-image: url('../../../images/can.svg');
+  margin: 20px 0 0 244px;
+  cursor: pointer;
+}
+
+.element__delete-button_visible {
+  visibility: visible;
+}
+
+.element__delete-button_hidden{
+  visibility: hidden;
+}

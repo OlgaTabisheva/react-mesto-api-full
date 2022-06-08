@@ -1,0 +1,6 @@
+.page {
+  background-color: black;
+  display: grid;
+  justify-content: center;
+  min-height:100vh
+}

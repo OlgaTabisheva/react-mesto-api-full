@@ -1,0 +1,16 @@
+.register__login{
+  font-family: "Inter", 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
+
+
+.register__login:hover{
+  opacity: 0.5;
+  transition: all 1s ease-out;
+}

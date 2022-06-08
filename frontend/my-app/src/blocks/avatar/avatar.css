@@ -1,0 +1,9 @@
+.avatar{
+
+}
+
+.avatar:hover {
+  background-image: url(../../images/Pan.svg)!important;
+  background-position: center;
+  background-repeat: no-repeat;
+}
