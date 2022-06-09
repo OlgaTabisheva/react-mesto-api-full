@@ -7,12 +7,14 @@ const { cardRouter } = require('./routes/card');
 const auth = require('./middlewares/auth');
 const { urlRegex } = require('./utils');
 const NotFoundError = require('./errors/not-found-err');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 const { PORT = 3000 } = process.env;
 const { createUser, login } = require('./controllers/users');
 
 app.use(express.json());
+app.use(requestLogger);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -36,6 +38,8 @@ app.use('/', auth, cardRouter);
 app.use('/', auth, (req, res, next) => {
   next(new NotFoundError('Маршрут не найден'));
 });
+
+app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
 app.use((err, req, res, next) => {
   // если у ошибки нет статуса, выставляем 500
