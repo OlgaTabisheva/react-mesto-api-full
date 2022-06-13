@@ -16,8 +16,9 @@ const { createUser, login } = require('./controllers/users');
 
 app.use(express.json());
 
-const cors = require(cors)
+
 app.use(cors())
+
 
 app.use(requestLogger);
 app.post('/signin', celebrate({
