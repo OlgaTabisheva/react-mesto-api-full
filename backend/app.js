@@ -24,8 +24,12 @@ const corsOptions = {
 //app.use(cors(corsOptions))
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+  res.header("Access-Control-Allow-Headers", "*");
+
+  if (req.method==='OPTIONS')
+     return res.send();
+  else
+    next();
 });
 
 app.use(requestLogger);
