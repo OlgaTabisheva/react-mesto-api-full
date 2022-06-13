@@ -51,6 +51,6 @@ class AuthApi {
 }
 
 export const authApi = new AuthApi({
-  baseUrl: 'http://iamthebest.back.nomoreparties.sbs',
+  baseUrl: 'http://localhost:3000',
 });
 
