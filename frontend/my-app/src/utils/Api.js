@@ -97,7 +97,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'http://iamthebest.back.nomoreparties.sbs/',
+  baseUrl: 'http://iamthebest.back.nomoreparties.sbs',
   headers: {
     authorization: '02df6ff4-2e7c-4c41-a91c-33f97923bd9a',
     'Content-Type': 'application/json'
