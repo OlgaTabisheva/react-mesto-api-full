@@ -54,8 +54,8 @@ app.use((err, req, res, next) => {
 });
 app.use((err, req, res, next) => {
   const origins = [
-    'http://iamthebest.front.nomoredomains.xyz/',
-    'https://iamthebest.front.nomoredomains.xyz/'
+    'http://iamthebest.front.nomoredomains.xyz',
+    'https://iamthebest.front.nomoredomains.xyz'
   ];
 
   for(var i = 0; i < origins.length; i++){
