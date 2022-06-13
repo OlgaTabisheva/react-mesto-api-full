@@ -8,12 +8,16 @@ const auth = require('./middlewares/auth');
 const { urlRegex } = require('./utils');
 const NotFoundError = require('./errors/not-found-err');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('cors')
 
 const app = express();
 const { PORT = 3000 } = process.env;
 const { createUser, login } = require('./controllers/users');
 
 app.use(express.json());
+
+const cors = require(cors)
+app.use(cors())
 
 app.use(requestLogger);
 app.post('/signin', celebrate({
@@ -50,23 +54,6 @@ app.use((err, req, res, next) => {
       // проверяем статус и выставляем сообщение в зависимости от него
       message,
     });
-  next();
-});
-app.use((err, req, res, next) => {
-  const origins = [
-    'http://iamthebest.front.nomoredomains.xyz',
-    'https://iamthebest.front.nomoredomains.xyz'
-  ];
-
-  for(var i = 0; i < origins.length; i++){
-    const origin = origins[i];
-    if(req.headers.origin.indexOf(origin) > -1){
-      res.header('Access-Control-Allow-Origin', req.headers.origin);
-    }
-  }
-
-  res.header("Access-Control-Allow-Methods", "*");
-  res.header("Access-Control-Allow-Headers", "*");
   next();
 });
 
