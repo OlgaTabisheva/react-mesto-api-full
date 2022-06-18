@@ -20,7 +20,7 @@ function Card(props) {
     `element__delete-button ${isOwn ? 'element__delete-button_visible' : 'element__delete-button_hidden'}`
   );
 
-  const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+  const isLiked = props.card.likes.some(i => i === currentUser._id);
   const cardLikeButtonClassName = (`element__group-heart ${isLiked ? 'element__group-heart_active' : 'element__group-heart_hidden'}`);
 
   return (
