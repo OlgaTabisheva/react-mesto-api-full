@@ -99,7 +99,7 @@ class Api {
 export const api = new Api({
   baseUrl: 'http://localhost:3000',
   headers: {
- //   authorization: '02df6ff4-2e7c-4c41-a91c-33f97923bd9a',
+    authorization: `Bearer ${localStorage.getItem('JWT')}`,
     'Content-Type': 'application/json'
   }
 });

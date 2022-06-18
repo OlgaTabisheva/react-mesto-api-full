@@ -14,6 +14,8 @@ import Login from './Login';
 import ProtectedRoute from "./ProtectedRoute";
 import {authApi} from "../utils/AuthApi";
 import InfoTooltip from "./InfoTooltip";
+import ImagePopup from "./ImagePopup";
+
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -30,10 +32,10 @@ function App() {
     if (!loggedIn)
       return;
     Promise.all([api.getProfile(), api.getInitialCards()])
-      .then(([profile, cards]) => {
+      .then(([profile, newcards]) => {
         setСurrentUser(profile);
-        setCards(cards);
-      }).catch(console.log)
+        setCards(newcards);
+      }).catch(err => console.log(err))
   }, [loggedIn])
 
   const history = useHistory();
@@ -43,7 +45,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(isInfoTooltipOpen)
   }, [isInfoTooltipOpen])
 
   useEffect(() => {
@@ -53,11 +54,6 @@ function App() {
     }
 
     history.push('/sign-in');
-  }, [loggedIn]);
-
-  React.useEffect(() => {
-    console.log(loggedIn)
-
   }, [loggedIn]);
 
   function handleCardLike(card) {
@@ -148,7 +144,6 @@ function App() {
           email: username
         });
         localStorage.setItem('JWT', data.token);
-        console.log("hendleLogin")
 
         setIsloggedIn(true)
         setIsInfoTooltipOpen(0)
@@ -162,20 +157,17 @@ function App() {
     if (jwt) {
       authApi.isTokenValid(jwt).then((res) => {
         if (res) {
-          console.log(res);
           setUserData({
-            _id: res.data._id,
-            email: res.data.email
+            _id: res._id,
+            email: res.email
           });
-          console.log("tokenCheck")
           setIsloggedIn(true);
         }
-      }).catch(console.log);
+      }).catch(err => console.log(err));
     }
   }
 
   function signOut() {
-    console.log("loguot")
     localStorage.removeItem('JWT');
     setIsloggedIn(false)
     history.push('/sign-up');
@@ -214,7 +206,7 @@ function App() {
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateAvatar}/>
         <EditProfilePopup isOpen={isEditEditPopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateUser={handleAddPlaceSubmit}/>
-        <imagePopup card={CardSelected} onClose={closeAllPopups}/>
+        <ImagePopup card={CardSelected} onClose={closeAllPopups}/>
         <InfoTooltip isOpen={isInfoTooltipOpen} onClose={closeAllPopups}/>
       </div>
     </currentUserContext.Provider>

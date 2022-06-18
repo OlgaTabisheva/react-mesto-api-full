@@ -6,7 +6,7 @@ const ForbiddenErr = require('../errors/forbidden-err');
 
 const getCards = (req, res, next) => {
   card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch((err) => next(err));
 };
 
@@ -17,7 +17,7 @@ const createCards = (req, res, next) => {
     throw new RequestErr('Данные карточки заполненны не полностью');
   }
   return card.create({ name, link, owner })
-    .then((newCard) => res.send({ data: newCard }))
+    .then((newCard) => res.send( newCard ))
     .catch((err) => next(err));
 };
 
@@ -34,7 +34,7 @@ async function deleteCard(req, res, next) {
           if (newCard === null) {
             throw new NotFoundError('Карточка не найдена');
           }
-          res.send({ data: newCard });
+          res.send({ newCard });
         });
     })
     .catch((err) => next(err));
@@ -49,7 +49,7 @@ const likeCard = (req, res, next) => card.findByIdAndUpdate(
     if (likes === null) {
       throw new NotFoundError('Карточка не найдена');
     }
-    return res.send({ data: likes });
+    return res.send( likes );
   })
   .catch((err) => next(err));
 
@@ -66,7 +66,7 @@ const dislikeCard = (req, res, next) => {
       if (likes === null) {
         throw new NotFoundError('Карточка не найдена');
       }
-      return res.send({ data: likes });
+      return res.send( likes );
     })
     .catch((err) => next(err));
 };

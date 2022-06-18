@@ -15,8 +15,7 @@ function Card(props) {
   function handleDeleteClick() {
     props.onCardDelete(props.card);
   }
-
-  const isOwn = props.card.owner._id === currentUser._id;
+  const isOwn = props.card.owner === currentUser._id;
   const cardDeleteButtonClassName = (
     `element__delete-button ${isOwn ? 'element__delete-button_visible' : 'element__delete-button_hidden'}`
   );

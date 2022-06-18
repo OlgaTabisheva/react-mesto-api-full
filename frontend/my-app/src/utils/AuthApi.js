@@ -40,6 +40,7 @@ class AuthApi {
       },
     })
       .then(res => this._getResponseData(res))
+      .catch(err=> console.log(err))
   }
 
   _getResponseData(res) {
