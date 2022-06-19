@@ -8,30 +8,24 @@ const { cardRouter } = require('./routes/card');
 const auth = require('./middlewares/auth');
 const { urlRegex } = require('./utils');
 const NotFoundError = require('./errors/not-found-err');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors')
 
 const app = express();
 const { PORT = 3000 } = process.env;
 const { createUser, login } = require('./controllers/users');
 
 app.use(express.json());
+// app.use(cors(corsOptions))
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  res.header('Access-Control-Allow-Methods', '*');
 
-const corsOptions = {
-  origin: 'http://iamthebest.front.nomoredomains.xyz',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-//app.use(cors(corsOptions))
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*")
-  res.header("Access-Control-Allow-Methods", "*");
-
-  if (req.method==='OPTIONS')
-     return res.send();
-  else
-    next();
+  if (req.method === 'OPTIONS') {
+    return res.send();
+  }
+  return next();
 });
 
 app.use(requestLogger);

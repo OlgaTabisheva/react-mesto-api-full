@@ -17,7 +17,7 @@ const createCards = (req, res, next) => {
     throw new RequestErr('Данные карточки заполненны не полностью');
   }
   return card.create({ name, link, owner })
-    .then((newCard) => res.send( newCard ))
+    .then((newCard) => res.send(newCard))
     .catch((err) => next(err));
 };
 
@@ -42,14 +42,14 @@ async function deleteCard(req, res, next) {
 
 const likeCard = (req, res, next) => card.findByIdAndUpdate(
   req.params.cardId,
-  { $addToSet: { likes: req.user._id } },
+  { $addToSet: { likes: req.user } },
   {},
 )
   .then((likes) => {
     if (likes === null) {
       throw new NotFoundError('Карточка не найдена');
     }
-    return res.send( likes );
+    return res.send(likes);
   })
   .catch((err) => next(err));
 
@@ -59,14 +59,14 @@ const dislikeCard = (req, res, next) => {
   }
   return card.findByIdAndUpdate(
     req.params.cardId,
-    { $pull: { likes: req.user._id } },
+    { $pull: { likes: req.user } },
     {},
   )
     .then((likes) => {
       if (likes === null) {
         throw new NotFoundError('Карточка не найдена');
       }
-      return res.send( likes );
+      return res.send(likes);
     })
     .catch((err) => next(err));
 };
