@@ -33,7 +33,7 @@ const createUser = (req, res, next) => {
         avatar: newUser.avatar,
         _id: newUser._id,
       };
-      res.send({ data: outUser });
+      res.send( outUser );
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -54,7 +54,7 @@ const getUser = (req, res, next) => {
       if (newUser === null) {
         throw new NotFoundError('Пользователь не найден');
       } else {
-        return res.send({ data: newUser });
+        return res.send( newUser );
       }
     })
     .catch((err) => next(err));
@@ -82,7 +82,7 @@ const patchUser = (req, res, next) => {
     },
   )
     .then((newUser) => {
-      res.send({ data: newUser });
+      res.send( newUser );
     })
     .catch((err) => next(err));
 };
@@ -97,7 +97,7 @@ const patchAvatar = (req, res, next) => {
       runValidators: true,
     },
   )
-    .then((newUser) => res.send({ data: newUser }))
+    .then((newUser) => res.send(  newUser ))
     .catch((err) => next(err));
 };
 
