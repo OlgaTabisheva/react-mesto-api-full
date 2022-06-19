@@ -52,6 +52,6 @@ class AuthApi {
 }
 
 export const authApi = new AuthApi({
-  baseUrl: 'http://iamthebest.back.nomoreparties.sbs',
+  baseUrl: 'https://iamthebest.back.nomoreparties.sbs',
 });
 
