@@ -100,7 +100,6 @@ function App() {
   function handleUpdateUser(newInfo) {
 
     api.editProfile(newInfo.name, newInfo.about).then((newUserInfo) => {
-      console.log(newUserInfo)
       setСurrentUser(newUserInfo)
       closeAllPopups()
     }).catch(console.log)
