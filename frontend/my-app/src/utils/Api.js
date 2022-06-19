@@ -97,7 +97,8 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://iamthebest.back.nomoreparties.sbs',
+  baseUrl: 'http://localhost:3000',
+  //https://iamthebest.back.nomoreparties.sbs
   headers: {
     authorization: `Bearer ${localStorage.getItem('JWT')}`,
     'Content-Type': 'application/json'

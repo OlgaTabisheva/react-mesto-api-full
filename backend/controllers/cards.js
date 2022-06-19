@@ -42,8 +42,8 @@ async function deleteCard(req, res, next) {
 
 const likeCard = (req, res, next) => card.findByIdAndUpdate(
   req.params.cardId,
-  { $addToSet: { likes: req.user } },
-  {},
+  { $addToSet: { likes: req.user._id } },
+  { new: true },
 )
   .then((likes) => {
     if (likes === null) {
@@ -59,8 +59,8 @@ const dislikeCard = (req, res, next) => {
   }
   return card.findByIdAndUpdate(
     req.params.cardId,
-    { $pull: { likes: req.user } },
-    {},
+    { $pull: { likes: req.user._id } },
+    { new: true },
   )
     .then((likes) => {
       if (likes === null) {
