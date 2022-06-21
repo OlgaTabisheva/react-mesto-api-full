@@ -94,6 +94,12 @@ class Api {
     })
       .then( res => this._getResponseData(res))
   }
+  setToken(newToken){
+    this._headers={
+      authorization: `Bearer ${newToken}`,
+      'Content-Type': 'application/json'
+    };
+  }
 }
 
 export const api = new Api({

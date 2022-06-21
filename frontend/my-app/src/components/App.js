@@ -144,9 +144,7 @@ function App() {
           email: username
         });
         localStorage.setItem('JWT', data.token);
-        setTimeout(() => {
-          localStorage.getItem( 'JWT');
-        }, 50);
+        api.setToken(data.token);
 
         setIsloggedIn(true)
         setIsInfoTooltipOpen(0)
